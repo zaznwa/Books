@@ -96,7 +96,7 @@ fun MainScreen(
 
                     Box(
                         modifier = Modifier
-                            .padding(end = 8.dp, bottom = 8.dp)
+                            .padding(end = 8.dp)
                             .clip(RoundedCornerShape(20.dp))
                             .background(bgColor)
                             .clickable { selectedCategory = category }
@@ -113,8 +113,8 @@ fun MainScreen(
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(padding),
-                contentPadding = PaddingValues(vertical = 16.dp, horizontal = 16.dp)
+                    .padding( vertical = 10.dp),
+                contentPadding = PaddingValues( horizontal = 16.dp)
             ) {
                 items(filteredBooks) { book ->
                     BookItem(book, onClickItem = { onClickItem(it) })
