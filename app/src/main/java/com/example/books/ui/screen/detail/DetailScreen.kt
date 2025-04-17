@@ -2,6 +2,7 @@ package com.example.books.ui.screen.detail
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -14,6 +15,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,7 +30,9 @@ import com.example.books.model.BookModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
-    model: BookModel,
+    padding: PaddingValues,
+    title: MutableState<String>,
+    book: BookModel,
     onNavigationClick: () -> Unit
 ) {
     val scrollState = rememberScrollState()
@@ -39,7 +43,7 @@ fun DetailScreen(
     ) {
         CenterTittleTopAppBar(
             navigationIcon = Icons.AutoMirrored.Filled.ArrowBack,
-            title = model.name,
+            title = book.name,
         ) {
             onNavigationClick()
         }
@@ -53,29 +57,29 @@ fun DetailScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(
-                text = model.name,
+                text = book.name,
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = model.date,
+                text = book.date,
                 fontSize = 24.sp
             )
             Text(
-                text = model.author,
+                text = book.author,
                 fontSize = 24.sp
             )
             Text(
-                text = model.category,
+                text = book.category,
                 fontSize = 22.sp
             )
             Text(
-                text = model.description,
+                text = book.description,
                 fontSize = 18.sp
             )
             AsyncImage(
-                model = model.image,
-                contentDescription = model.name,
+                model = book.image,
+                contentDescription = book.name,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(500.dp)

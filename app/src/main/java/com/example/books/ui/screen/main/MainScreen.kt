@@ -12,6 +12,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,12 +29,17 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.books.ui.components.CenterTittleTopAppBar
 import com.example.books.model.BookModel
+import com.example.books.sealed.Screen
 
 @SuppressLint("RememberReturnType")
 @Composable
 fun MainScreen(
-    onClickItem: (BookModel) -> Unit
+    padding: PaddingValues,
+    onClickItem: (BookModel) -> Unit,
+    title: MutableState<String>,
 ) {
+
+
     val allBooks = remember { mutableStateOf(BookModel.getData()) }
     var searchQuery by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf("Все") }
@@ -177,8 +183,8 @@ fun BookItem(model: BookModel, onClickItem: (BookModel) -> Unit) {
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun MainScreenPreview() {
-    MainScreen {}
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun MainScreenPreview() {
+//    MainScreen {}
+//}

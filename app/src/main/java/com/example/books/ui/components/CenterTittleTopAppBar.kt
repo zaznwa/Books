@@ -15,8 +15,8 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun CenterTittleTopAppBar(
     title: String,
-    navigationIcon: ImageVector,
-    onNavigationClick: () -> Unit? = {}
+    navigationIcon: ImageVector? = null,
+    onNavigationClick: (() -> Unit)? = null
 ) {
     CenterAlignedTopAppBar(
         title = {
@@ -26,15 +26,13 @@ fun CenterTittleTopAppBar(
             )
         },
         navigationIcon = {
-            IconButton(
-                onClick = {
-                    onNavigationClick()
+            if (navigationIcon != null && onNavigationClick != null) {
+                IconButton(onClick = onNavigationClick) {
+                    Icon(
+                        imageVector = navigationIcon,
+                        contentDescription = "Назад"
+                    )
                 }
-            ) {
-                Icon(
-                    imageVector = navigationIcon,
-                    contentDescription = "Back"
-                )
             }
         }
     )
